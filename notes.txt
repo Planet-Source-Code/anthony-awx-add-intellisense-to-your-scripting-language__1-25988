@@ -1,0 +1,135 @@
+In trying to emulate the Microsoft Intellisense 
+functionality as closely as possible, here are my notes 
+for using this code.
+
+===============================================================
+WHAT IS NEW IN THE UPDATE?
+===============================================================
+After my original submission, a few of you requested better
+comments, which I did (I always try to comment heavily so
+modification of "borrowing" of routines is easier). So hope you
+like the additional comments.
+
+Also, I wrapped some of the core Intellisense functionality
+into a few Subs, so you can more easily port the code into
+your app. 
+
+I fixed a few minor potential bugs in the code, one which was
+reported, and 2 which I found myself.
+
+I added the ability to change the "LOOK" of the intellisense
+list -- you can use the "Office-XP" look, the VB6 look, or
+a combination of both looks (which I actually kinda like!).
+
+Lastly, I renamed the Intellisense controls (instead of the
+generic Label1, Picture1 kind of thing). This should help you
+better follow the code.
+
+
+===============================================================
+HOW TO USE YOUR OWN SCRIPTING LANGUAGE OBJECTS AND COMMANDS
+===============================================================
+The file "OBJ.TXT" contains a sample of some objects on the
+form. I used "ME" as the form qualifier (eg. me.caption) 
+and a few controls and properties as follows:
+
+	Me.
+	Font.
+	RTF1.
+	Command1.
+
+Format is like this (when you make your own to match your 
+scripting language):
+
+OBJECT.			(INDLUDE THE "DOT")
+OBJECT.PROPERTY1
+OBJECT.PROPERTT2
+ETC
+!			<-- EXCLAMATION AFTER PROPERTIES
+NEXTOBJECT.
+NEXTOBJECT.PROPERTY1
+NEXTOBJECT.PROPERTY2
+ETC
+!
+
+
+
+===============================================================
+NOTES ON BASIC FUNCTIONALITY
+===============================================================
+
+Note that in my example, I included the "Font" object so you 
+can do this: 
+
+	rtf1.font.   
+
+and get the "fonts properties" to appear in the intellisense 
+box. You can do this for as many properties as you want -- you 
+can type as many dots as you want, and if the property is in 
+the OBJ.TXT file, the intellisense box will show: 
+
+For example, you can type this, and every time you type 
+the "DOT", a new intellisense box will appear with the 
+applicable properties:
+
+	Me.Command1.Font.
+
+You can also insert "DOT" characters in the middle of a line: 
+for example, if you have a line of code like this:
+
+	JibberJabber MEfdgjkhfdkghkfdfdgfd
+
+And you insert a "DOT" after the "ME" like this
+
+	JibberJabber ME.fdgjkhfdkghkfdfdgfd
+		       ^
+
+The Intellisense will recognize "ME" as an object, and display 
+its properties.
+
+
+===============================================================
+Here are the results of keypresses while the intellisense list
+is active (like the VB Intellisense).
+===============================================================
+
+>> Typing "ESC" will rid of the intellisense box
+>> Typing "ENTER" or "TAB" will select the item in the list and 
+   place it in your code
+>> Typing Tab IMMEDIATELY will select the first item in the
+   list
+>> Typing characters while list is displayed will actively 
+   enter characters into your code, as well as 
+   "search and select" the closest match in the list.
+
+
+===============================================================
+ERROR HANDLING
+===============================================================
+I have for the most part left out error handling. I did this
+so you can make sure the intellisense code works with your
+particular scripting language or situation. Leaving the error
+handles our means you can see what generates an error (if 
+anything), and then handle it manually. Of course, you can
+just do an on error resume next for 99% functionality to
+save some grief. I suspect for most occasions, this would work.
+Note that with the example here, I was unable to generate any
+runtimes (although I am sure if one of you out there was
+determined, you would find a way).
+
+
+===========================================================
+OTHER NOTES
+===========================================================
+Well, I really like the "Office XP" menus, how they are 
+a flat white with a light dropshadow, so I made this
+intellisense look like that (instead of like VB 6's, which
+is more of a Windows 98ish 3D look). And in this revision,
+I added ability to use VB6 look, and also a combo of both.
+
+If you have any feedback or comments, please let me know.
+
+Hope you find the code useful!
+
+Anthony Dunleavy
+
